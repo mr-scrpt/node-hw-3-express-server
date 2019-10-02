@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@nauma/eventemitter@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@nauma/eventemitter/-/eventemitter-1.0.7.tgz#b2a24302fc1a52ee0bf3f6b23e69b5a877b55da4"
+  integrity sha512-AZs7UubflPV4MTYMdOPHZyoZUpFkQvELrStv4ds2km/T6KNmm/Z0CuIo5x/Y2lIo5rBapXMLJkoeKbxPV/6OKA==
+
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"

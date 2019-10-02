@@ -1,0 +1,6 @@
+[
+  {"name": "linkedin", "classes" : "fa-linkedin-in"},
+  {"name": "github", "classes" :"fa-github-alt"},
+  {"name": "tumblr", "classes" :"fa-tumblr"},
+  {"name": "vk", "classes" :"fa-vk"}
+]
