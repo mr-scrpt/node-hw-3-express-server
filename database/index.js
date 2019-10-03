@@ -4,6 +4,7 @@ data.products = require('./products');
 data.social = require('./social');
 
 DATABASE.on('skills/get', response => {
+    console.log(data.skills);
     response.reply(data.skills);
 });
 
