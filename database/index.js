@@ -3,9 +3,19 @@ data.skills = require('./skills');
 data.products = require('./products');
 data.social = require('./social');
 
-DATABASE.on('allData/get', response => {
-    response.reply(data);
+DATABASE.on('skills/get', response => {
+    response.reply(data.skills);
 });
+
+DATABASE.on('products/get', response => {
+    response.reply(data.products);
+});
+DATABASE.on('social/get', response => {
+    response.reply(data.social);
+});
+
+
+
 
 DATABASE.on('social/get', response => {
     response.reply(data);

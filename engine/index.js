@@ -1,6 +1,10 @@
 ENGINE.on('index/get', async response => {
     try {
-        const data = await DATABASE.emit('allData/get', {});
+        const skills = await DATABASE.emit('skills/get', {});
+        const products = await DATABASE.emit('products/get', {});
+        const social = await DATABASE.emit('social/get', {});
+        const data = {skills, products, social};
+        console.log(data);
         response.reply(data)
     }catch (err) {
         response.replyErr(err);
@@ -9,7 +13,9 @@ ENGINE.on('index/get', async response => {
 
 ENGINE.on('login/get', async response => {
     try {
-        const data = await DATABASE.emit('social/get', {});
+        const social = await DATABASE.emit('social/get', {});
+        const data = {social};
+        //console.log(data);
         response.reply(data)
     }catch (err) {
         response.replyErr(err);
