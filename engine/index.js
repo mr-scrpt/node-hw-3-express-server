@@ -26,11 +26,5 @@ ENGINE.on('login/get', async response => {
 });
 
 ENGINE.on('login/post', async response => {
-    try {
-        const social = await DATABASE.emit('social/get', {});
-        const data = {social};
-        response.reply(data)
-    }catch (err) {
-        response.replyErr(err);
-    }
+
 });

@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const bodyParser = require('body-parser')
 
 // Приложение
 const app = express();
@@ -21,8 +22,8 @@ app
   .set('view engine', 'pug')
 
   .use(logger('dev'))
-  .use(express.json())
-  .use(express.urlencoded({ extended: false }))
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: false }))
   .use(cookieParser())
   .use(express.static(path.join(__dirname, 'public')))
   .use(router);

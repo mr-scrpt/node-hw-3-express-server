@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@hapi/joi": "^16.1.6",
     "@nauma/eventemitter": "^1.0.7",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -15,6 +16,7 @@
     "jade": "~1.11.0",
     "lowdb": "^1.0.0",
     "morgan": "~1.9.1",
+    "nodemailer": "^6.3.0",
     "nodemon": "^1.19.3",
     "pug": "^2.0.4"
   }
