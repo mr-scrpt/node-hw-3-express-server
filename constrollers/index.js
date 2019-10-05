@@ -26,8 +26,7 @@ module.exports.loginPage = async (req, res)=>{
 
 
 module.exports.sendMsg = async(req, res) => {
-  //req.flash('info', 'Flash is back!');
-  res.redirect('/');
+
   const {name, email, message} = req.body;
   const valid = await validForm(name, email, message);
 
@@ -40,6 +39,7 @@ module.exports.sendMsg = async(req, res) => {
   try {
     await sendMailer({name, email, message});
     req.flash('msgsemail', 'Успех');
+
     res.redirect(`/`)
   }catch (err) {
     throw new Error(`Ошибка отправки почты ${err}`);
