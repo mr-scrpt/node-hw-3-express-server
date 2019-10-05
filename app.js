@@ -1,10 +1,11 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser')
-
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 // Приложение
 const app = express();
 
@@ -25,7 +26,21 @@ app
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
   .use(cookieParser())
+  .use(
+    session({
+      secret: 'loftschool',
+      key: 'sessionkey',
+      cookie: {
+        path: '/',
+        httpOnly: true,
+        maxAge: 6000
+      },
+      saveUninitialized: false,
+      resave: false
+    })
+  )
   .use(express.static(path.join(__dirname, 'public')))
+  .use(flash())
   .use(router);
 
 

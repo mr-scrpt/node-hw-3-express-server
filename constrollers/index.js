@@ -1,8 +1,12 @@
 const validForm = require('../libs/validators/form');
 const sendMailer = require('../libs/sendMail');
+
 module.exports.indexPage = async (req, res)=>{
+
+
   try {
-    const msgsemail = req.query.msgsemail;
+    const msgsemail = req.flash('msgsemail');
+    console.log(msgsemail);
     const data = await ENGINE.emit('index/get');
     msgsemail !== undefined ? data.msgsemail = msgsemail : null;
     res.render('pages/index', { title: 'Главная', ...data })
@@ -22,21 +26,25 @@ module.exports.loginPage = async (req, res)=>{
 
 
 module.exports.sendMsg = async(req, res) => {
-
+  //req.flash('info', 'Flash is back!');
+  res.redirect('/');
   const {name, email, message} = req.body;
   const valid = await validForm(name, email, message);
 
   if(valid.name === 'ValidationError'){
     const errMessage = valid.message;
-    res.redirect(`/?msgsemail=${errMessage}`)
+    req.flash('msgsemail', errMessage);
+    res.redirect(`/`)
   }
+
   try {
     await sendMailer({name, email, message});
-    res.redirect(`/?msgsemail=Успех!`)
+    req.flash('msgsemail', 'Успех');
+    res.redirect(`/`)
   }catch (err) {
     throw new Error(`Ошибка отправки почты ${err}`);
   }
 
 
 
-}
+};
