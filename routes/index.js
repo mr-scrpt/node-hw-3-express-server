@@ -10,5 +10,5 @@ router.post('/',  controllers.sendMsg);
 router.get('/login',  controllers.loginPage);
 router.get('/admin',  controllers.adminPage);
 router.post('/admin/skills',  controllers.skillsEdited);
-router.post('/admin/upload',  controllers.uploadWorks);
+//router.post('/admin/upload',  controllers.uploadWorks);
 module.exports = router;

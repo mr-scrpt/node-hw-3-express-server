@@ -19,25 +19,21 @@ DATABASE.on('social/get', async response => {
 DATABASE.on('skills/edited', async response => {
   const skills = response.data;
   for(let skill in skills){
-    console.log(skills[skill]);
-
-    dbSkills.filter({ name: skill }).each((item) =>{
-      if(skill === item.name && +skills[skill] !== item.number){
-        item.number = +skills[skill];
+    if (skills.hasOwnProperty(skill)) {
+      try {
+        dbSkills.filter({ name: skill }).each((item) =>{
+          if(skill === item.name && +skills[skill] !== item.number){
+            item.number = +skills[skill];
+          }
+        }).write();
+        response.reply({status: "success", message: "Данные обновлены"})
+      }catch (err) {
+        response.reply({status: "err", message: err})
       }
-        //console.log(item.number, skill)).write()
-    }).write()
 
+
+    }
   }
-  /*dbSkills.filter({ name: skill }).each((item) =>{
-				if(skills)
-				console.log(item.number, skill)).write()
-  } */
-
-  /*skills.forEach(skill=>(
-    dbSkills.filter({ name: skill.name }).each((item) => item.number = skill).write()
-  ))
-*/
 
 });
 

@@ -15,7 +15,7 @@ block content
           form.form-skill(action='/admin/skills' method="POST")
             .form-title Счетчики
             if (msgskill)
-              .status= msgskill
+              .status= msgskill.message
             each item in skills
                 label.form-skill__input-line
                   span.form-skill__input-title= item.adminText

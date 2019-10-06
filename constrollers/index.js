@@ -6,7 +6,7 @@ module.exports.indexPage = async (req, res)=>{
 
   try {
     const msgsemail = req.flash('msgsemail');
-    console.log(msgsemail);
+
     const data = await ENGINE.emit('index/get');
     msgsemail !== undefined ? data.msgsemail = msgsemail : null;
     res.render('pages/index', { title: 'Главная', ...data })
@@ -51,8 +51,11 @@ module.exports.sendMsg = async(req, res) => {
 };
 
 module.exports.adminPage = async (req, res) => {
+  const msgskill = req.flash('msgskill');
   try{
     const data = await ENGINE.emit('admin/get');
+    msgskill !== undefined ? data.msgskill = msgskill[0] : null;
+    console.log(data);
     res.render('pages/admin', { title: 'Авторизация', ...data })
   }catch (err) {
     res.render('error', {message: err.message})
@@ -60,9 +63,12 @@ module.exports.adminPage = async (req, res) => {
 };
 
 module.exports.skillsEdited = async (req, res) => {
-  const form = req.body;
-  const data = await ENGINE.emit('admin/skillsEdited', form);
+
+  const form = JSON.parse(JSON.stringify(req.body));
   try{
+    const data = await ENGINE.emit('admin/skillsEdited', form);
+    req.flash('msgskill', data);
+    res.redirect('/admin');
 
   }catch (err) {
 
@@ -70,11 +76,11 @@ module.exports.skillsEdited = async (req, res) => {
 };
 
 
-module.exports.uploadWorks = async (req, res) => {
+/*module.exports.uploadWorks = async (req, res) => {
   console.log('test here upload');
   try{
 
   }catch (err) {
 
   }
-};
+};*/
