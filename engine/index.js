@@ -25,6 +25,22 @@ ENGINE.on('login/get', async response => {
     }
 });
 
-ENGINE.on('login/post', async response => {
+ENGINE.on('admin/get', async response => {
+    try {
+        const skills = await DATABASE.emit('skills/get');
+        const data = {skills};
+        response.reply(data)
+    }catch (err) {
 
+    }
+});
+
+ENGINE.on('admin/skillsEdited', async response => {
+    try {
+        const data = await DATABASE.emit('skills/edited', response.data);
+
+        response.reply(data)
+    }catch (err) {
+
+    }
 });

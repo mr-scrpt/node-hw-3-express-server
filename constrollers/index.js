@@ -33,7 +33,8 @@ module.exports.sendMsg = async(req, res) => {
   if(valid.name === 'ValidationError'){
     const errMessage = valid.message;
     req.flash('msgsemail', errMessage);
-    res.redirect(`/`)
+    res.redirect(`/`);
+    return false;
   }
 
   try {
@@ -47,4 +48,33 @@ module.exports.sendMsg = async(req, res) => {
 
 
 
+};
+
+module.exports.adminPage = async (req, res) => {
+  try{
+    const data = await ENGINE.emit('admin/get');
+    res.render('pages/admin', { title: 'Авторизация', ...data })
+  }catch (err) {
+    res.render('error', {message: err.message})
+  }
+};
+
+module.exports.skillsEdited = async (req, res) => {
+  const form = req.body;
+  const data = await ENGINE.emit('admin/skillsEdited', form);
+  try{
+
+  }catch (err) {
+
+  }
+};
+
+
+module.exports.uploadWorks = async (req, res) => {
+  console.log('test here upload');
+  try{
+
+  }catch (err) {
+
+  }
 };
