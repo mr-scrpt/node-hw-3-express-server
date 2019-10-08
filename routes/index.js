@@ -8,6 +8,7 @@ router.get('/',  controllers.indexPage);
 router.post('/',  controllers.sendMsg);
 
 router.get('/login',  controllers.loginPage);
+router.post('/login',  controllers.auth);
 router.get('/admin',  controllers.adminPage);
 router.post('/admin/skills',  controllers.skillsEdited);
 router.post('/admin/upload',  controllers.uploadWorks);

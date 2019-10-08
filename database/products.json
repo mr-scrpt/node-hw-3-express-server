@@ -48,5 +48,10 @@
     "src": ".\\img\\products\\Work10.jpg",
     "name": "TestName",
     "price": 500
+  },
+  {
+    "src": ".\\img\\products\\Work11.jpg",
+    "name": "TestName",
+    "price": 500
   }
 ]

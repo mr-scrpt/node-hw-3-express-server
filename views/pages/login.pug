@@ -3,8 +3,8 @@ extends ../_template
 block content
   include ../common/_header_alt
   form(action="/login" method="POST").form-login
-    if (msgslogin)
-      .status= msglogin
+    if (isLogged)
+      .status= isLogged
     .form-login__line
       label.form-login__label(for="") Привет,
       input.form-login__input(type="email" name="email" placeholder="E-MAIL")

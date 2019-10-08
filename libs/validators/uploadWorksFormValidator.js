@@ -17,6 +17,7 @@ const uploadWorksFormValidator = async (fields, files) => {
 			resolve({status: "success", message: "Валидация пройдена"})
 		}
 		catch (err) {
+
 			reject({status: "err", message: err});
 		}
 	})

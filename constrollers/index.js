@@ -1,6 +1,7 @@
 const validForm = require('../libs/validators/form');
 const sendMailer = require('../libs/sendMail');
 const uploader = require('../libs/uploader');
+const auth = require('../libs/auth');
 
 module.exports.indexPage = async (req, res)=>{
 
@@ -19,10 +20,24 @@ module.exports.indexPage = async (req, res)=>{
 module.exports.loginPage = async (req, res)=>{
   try {
     const data = await ENGINE.emit('login/get');
-    res.render('pages/login', { title: 'Авторизация', ...data })
+    const isLogged = req.flash('isLogged')[0];
+
+    res.render('pages/login', { title: 'Авторизация', isLogged, ...data })
   }catch (err) {
     res.render('error', {message: err.message})
   }
+};
+
+
+module.exports.auth = async (req, res) => {
+  try {
+    await auth(req);
+    res.redirect(`/admin`);
+  }catch (e) {
+    req.flash('isLogged', 'Неправильный логин или пароль!');
+    res.redirect(`/login`);
+  }
+
 };
 
 module.exports.sendMsg = async(req, res) => {
@@ -53,6 +68,8 @@ module.exports.sendMsg = async(req, res) => {
 module.exports.adminPage = async (req, res) => {
   const msgskill = req.flash('msgskill')[0];
   const msgfile = req.flash('msgfile')[0];
+  const isLogged = req.flash('isLogged');
+  console.log(isLogged);
   try{
     const data = await ENGINE.emit('admin/get');
     res.render('pages/admin', { title: 'Авторизация', msgskill, msgfile, ...data })

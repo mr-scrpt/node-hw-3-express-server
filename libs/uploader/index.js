@@ -5,10 +5,10 @@ const validator = require('../../libs/validators/uploadWorksFormValidator');
 const countFile = require('../../libs/countFile');
 const {promisify} = require('util');
 const rename = promisify(fs.rename);
-const unlink = promisify(fs.unlinkSync);
+const unlink = promisify(fs.unlink);
 
 
-const uploader = (req, res) => {
+const uploader = (req) => {
 	return new Promise((resolve, reject) => {
 
 		const form = new formidable.IncomingForm();
@@ -47,6 +47,7 @@ const uploader = (req, res) => {
 
 					await unlink(files.photo.path);
 					reject({status: "err", message: e.message});
+
 				}
 
 			});

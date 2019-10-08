@@ -40,12 +40,11 @@ DATABASE.on('works/add', async response => {
   const work = response.data;
   //console.log(work);
   try {
-    const res = dbProducts
+    dbProducts
 			.push(work)
 			.write();
     response.reply({status: "success", message: "Работа добавлена"})
   }catch (err) {
-    console.log(err);
     response.reply({status: "err", message: err.message})
   }
 
