@@ -28,7 +28,7 @@ DATABASE.on('skills/edited', async response => {
         }).write();
         response.reply({status: "success", message: "Данные обновлены"})
       }catch (err) {
-        response.reply({status: "err", message: err})
+        response.reply({status: "err", message: err.message})
       }
 
 
@@ -36,4 +36,17 @@ DATABASE.on('skills/edited', async response => {
   }
 
 });
+DATABASE.on('works/add', async response => {
+  const work = response.data;
+  //console.log(work);
+  try {
+    const res = dbProducts
+			.push(work)
+			.write();
+    response.reply({status: "success", message: "Работа добавлена"})
+  }catch (err) {
+    console.log(err);
+    response.reply({status: "err", message: err.message})
+  }
 
+});

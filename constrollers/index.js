@@ -76,7 +76,10 @@ module.exports.skillsEdited = async (req, res) => {
 
 module.exports.uploadWorks = async (req, res) => {
   try{
-    await uploader(req, res);
+    const {data} = await uploader(req, res);
+
+    await ENGINE.emit('admin/addWork', data);
+
     req.flash('msgfile', 'Файл успешно загружен');
     res.redirect('/admin');
   }catch (err) {

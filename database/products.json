@@ -43,5 +43,10 @@
     "src": "./img/products/Work9.jpg",
     "name": "Вино вдохновение",
     "price": 600
+  },
+  {
+    "src": ".\\img\\products\\Work10.jpg",
+    "name": "TestName",
+    "price": 500
   }
 ]

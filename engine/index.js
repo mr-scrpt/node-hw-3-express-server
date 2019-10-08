@@ -41,6 +41,15 @@ ENGINE.on('admin/skillsEdited', async response => {
 
         response.reply(data)
     }catch (err) {
+        response.reply(err)
+    }
+});
 
+ENGINE.on('admin/addWork', async response=>{
+    try {
+        const data = await DATABASE.emit('works/add', response.data);
+        response.reply(data)
+    }catch (err) {
+        response.reply(err)
     }
 });
