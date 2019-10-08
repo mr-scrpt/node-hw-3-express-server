@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 // Приложение
 const app = express();
-
+require('dotenv').config();
 require('./buses');
 require('./engine');
 require('./database');
