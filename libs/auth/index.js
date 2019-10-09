@@ -6,9 +6,10 @@ const auth = (req) => {
 		const etalonEmail = process.env.LOG_IN;
 		const etalonPassword = process.env.PASS_WORD;
 
-		(email === etalonEmail) && (password === etalonPassword) && resolve({status: "success", message: "Авторизация успешна"});
+		(email === etalonEmail && password === etalonPassword)
+			? resolve({status: "success", message: "Авторизация успешна"})
+			: reject({status: "err", message: "Неверные данные авторизации"});
 
-		reject({status: "err", message: "Неверные данные авторизации"});
 	});
 };
 
